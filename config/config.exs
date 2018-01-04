@@ -9,6 +9,15 @@ use Mix.Config
 config :discuss,
   ecto_repos: [Discuss.Repo]
 
+config :ueberauth, Ueberauth,
+  providers: [
+    github: {Ueberauth.Strategy.Github, []}
+  ]
+
+config :ueberauth, Ueberauth.Strategy.Github.OAuth,
+  client_id: System.get_env("GITHUB_CLIENT_ID"),
+  client_secret: System.get_env("GITHUB_CLIENT_SECRET")
+
 # Configures the endpoint
 config :discuss, Discuss.Endpoint,
   url: [host: "localhost"],
